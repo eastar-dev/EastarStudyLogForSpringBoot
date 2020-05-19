@@ -1,25 +1,40 @@
 package dev.eastar.studylog.item
 
+import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
+import java.util.*
+
+
+interface StudyItemRepository : MongoRepository<StudyItem, String>
 
 @RestController
 @RequestMapping("/item")
 class ContentController {
 
     @Autowired
-    lateinit var mongoTemplate: MongoTemplate
+    lateinit var repository: StudyItemRepository
 
     @RequestMapping(method = [RequestMethod.GET, RequestMethod.POST], path = ["/{id}"])
     fun post(@PathVariable(value = "id") id: Long): String = "post item $id"
 
     @RequestMapping(method = [RequestMethod.GET, RequestMethod.POST])
-    fun post(): String = "post items"
+    fun post(): String {
+        val items = repository.findAll()
+        items.forEach {
+            println(it.toString())
+        }
+        return items.toString()
+    }
 
-    @PutMapping()
-    fun put(@RequestBody param: Map<String, Any>): String {
-        return "put item $param"
+    @PutMapping(consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
+    @ResponseBody
+    fun put(studyItem: StudyItem): String {
+        repository.insert(studyItem)
+        return studyItem.toString()
     }
 
     @DeleteMapping(path = ["/{id}"])

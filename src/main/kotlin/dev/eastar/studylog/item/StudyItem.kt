@@ -1,10 +1,11 @@
 package dev.eastar.studylog.item
 
-import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.web.bind.annotation.*
-
-@Document(collation = "studyitem")
-data class StudyItem(val id: String,val title: String, val content: String)
+data class StudyItem(var title: String, var content: String) {
+    private lateinit var _id: String
+    override fun toString(): String {
+        return "$_id : $title : $content"
+    }
+}
 
 
 
