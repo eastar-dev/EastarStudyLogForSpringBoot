@@ -1,2 +1,4 @@
 docker ps
 docker run -p 27017:27017  -d mongo
+
+메인 을 찾을수 없다고 나오는 경우 메인 edit config에서 실행클레스 지우고 다시 등록
