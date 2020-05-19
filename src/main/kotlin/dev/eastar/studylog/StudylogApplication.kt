@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class StudylogApplication
 
 fun main(args: Array<String>) {
-	runApplication<StudylogApplication>(*args)
+    runApplication<StudylogApplication>(*args)
 }
+

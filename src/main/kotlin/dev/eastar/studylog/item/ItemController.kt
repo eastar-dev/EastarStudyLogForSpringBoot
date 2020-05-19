@@ -11,15 +11,20 @@ class ContentController {
     @Autowired
     lateinit var mongoTemplate: MongoTemplate
 
-    @GetMapping()
-    @PostMapping()
-    fun post(): String = "post item"
+    @RequestMapping(method = [RequestMethod.GET, RequestMethod.POST], path = ["/{id}"])
+    fun post(@PathVariable(value = "id") id: Long): String = "post item $id"
+
+    @RequestMapping(method = [RequestMethod.GET, RequestMethod.POST])
+    fun post(): String = "post items"
 
     @PutMapping()
     fun put(@RequestBody param: Map<String, Any>): String {
         return "put item $param"
     }
 
-    @DeleteMapping()
-    fun delete(): String = "delete item"
+    @DeleteMapping(path = ["/{id}"])
+    fun delete(@PathVariable(value = "id") id: Long): String = "delete item $id"
+
+    @DeleteMapping(path = ["/all"])
+    fun delete(): String = "delete item all"
 }
