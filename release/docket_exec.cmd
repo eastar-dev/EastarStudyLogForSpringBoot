@@ -1,1 +1,1 @@
-docker exec -i -t boot_mongo bash
+docker exec -i -t mongo bash
