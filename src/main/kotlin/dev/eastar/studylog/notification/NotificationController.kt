@@ -13,12 +13,8 @@ class NotificationController {
     @Autowired
     lateinit var repository: StudyItemRepository
 
-    //@Scheduled(cron = "0 * * * * *")//매 번 0초가 될때
     @Scheduled(fixedDelay = 10000)
     fun scheduled() {
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
-        val now = Date()
-        val strDate = sdf.format(now)
-        println("Java cron job expression:: $strDate")
+        println(SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date()) + " [send nitification]")
     }
 }
