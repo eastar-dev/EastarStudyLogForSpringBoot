@@ -2,12 +2,9 @@ package dev.eastar.studylog.item
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Sort
-import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
-
-interface StudyItemRepository : MongoRepository<StudyItem, String>
 
 @RestController
 @RequestMapping("/item")
@@ -25,9 +22,9 @@ class ContentController {
     @ResponseBody
     fun insert(studyItem: StudyItem) = repository.insert(studyItem)
 
-    //@PutMapping(consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
-    //@ResponseBody
-    //fun update(studyItem: StudyItem) = repository.findById(studyItem._id!!).up
+    @PostMapping(consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
+    @ResponseBody
+    fun update(studyItem: StudyItem) = repository.save(studyItem)
 
     @DeleteMapping(path = ["/{id}"])
     fun delete(@PathVariable(value = "id") id: String) = repository.deleteById(id)
