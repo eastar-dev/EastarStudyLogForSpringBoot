@@ -4,6 +4,7 @@ package dev.eastar.studylog.item
 
 import dev.eastar.studylog.StudyItemRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.http.MediaType
@@ -20,9 +21,8 @@ class ContentController {
     }
 
     @PostMapping(path = ["/test"])
-    fun test(): MutableList<StudyItem> {
+    fun test() {
         println("===================================test===================================")
-        return repository.findByPushIs(0L)
     }
 
     @PostMapping
