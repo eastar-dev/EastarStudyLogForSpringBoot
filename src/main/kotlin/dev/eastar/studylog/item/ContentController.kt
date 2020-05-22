@@ -21,15 +21,27 @@ class ContentController {
     }
 
     @PostMapping(path = ["/test"])
-    fun test() {
+    fun test(@RequestParam(value = "id", defaultValue = "${Int.MAX_VALUE}", required = false) id: Int,
+             @RequestParam("size", defaultValue = "30", required = false) size: Int): MutableList<StudyItem> {
         println("===================================test===================================")
+        //return repository.findByPushIs(0L)
+        return repository.findByTestLessThan(id, PageRequest.of(0, size, SORT)).content
     }
 
+    //id 기반 호출
     @PostMapping
-    fun page(@RequestParam("page", defaultValue = "0", required = false) page: Int,
+    fun last(@RequestParam(value = "millisecond", defaultValue = "${Long.MAX_VALUE}", required = false) id: Long,
              @RequestParam("size", defaultValue = "30", required = false) size: Int): MutableList<StudyItem> {
-        return repository.findAll(PageRequest.of(page, size, SORT)).content
+        println("2===================================test===================================")
+        return repository.findByMillisecondLessThan(id, PageRequest.of(0, size, SORT)).content
     }
+
+    //page 기반 호출
+    //@PostMapping
+    //fun page(@RequestParam("page", defaultValue = "0", required = false) page: Int,
+    //         @RequestParam("size", defaultValue = "30", required = false) size: Int): MutableList<StudyItem> {
+    //    return repository.findAll(PageRequest.of(page, size, SORT)).content
+    //}
 
     @PutMapping(consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
     fun updateOrInsert(studyItem: StudyItem) = repository.save(studyItem)

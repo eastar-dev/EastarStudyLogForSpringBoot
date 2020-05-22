@@ -10,5 +10,6 @@ data class StudyItem(
     var team: String = "noteam",
     var nick: String = "noname",
     var title: String,
-    var content: String
+    var content: String,
+    var test: Int
 )
