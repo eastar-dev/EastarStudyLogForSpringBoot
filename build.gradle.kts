@@ -17,15 +17,28 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+	//implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	implementation("com.google.firebase:firebase-admin:6.13.0")
+
+	implementation("com.squareup.okhttp3:okhttp:4.7.2")
+
+
+		//compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.3.0'
+		//compile group: 'com.squareup.retrofit2', name: 'converter-jackson', version: '2.3.0'
+		//compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.3'
+		//provided group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+		//testCompile('org.springframework.boot:spring-boot-starter-test')
+
+
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
-	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-	testImplementation("io.projectreactor:reactor-test")
+	//testImplementation("io.projectreactor:reactor-test")
 }
 
 tasks.withType<Test> {

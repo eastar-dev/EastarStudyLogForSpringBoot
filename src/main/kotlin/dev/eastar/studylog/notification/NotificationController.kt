@@ -16,6 +16,9 @@ class NotificationController {
     @Autowired
     lateinit var repository: StudyItemRepository
 
+    @Autowired
+    lateinit var push: AndroidPushNotificationsService
+
     @Scheduled(fixedDelay = 10000)
     fun scheduled() {
         println(SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date()) + "==push start====================================================================")
@@ -24,6 +27,7 @@ class NotificationController {
         }.forEach {
             repository.save(it)
             println("[send] $it")
+            push.send("[send] $it")
         }
         println(SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date()) + "==push end  ====================================================================")
     }
