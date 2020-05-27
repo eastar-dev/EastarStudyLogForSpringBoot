@@ -1,4 +1,4 @@
-package dev.eastar.studylog
+package dev.eastar.studylog.item
 
 import dev.eastar.studylog.item.StudyItem
 import org.springframework.data.domain.Page

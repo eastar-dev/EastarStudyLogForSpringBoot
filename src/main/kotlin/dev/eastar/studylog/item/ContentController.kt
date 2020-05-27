@@ -2,9 +2,7 @@
 
 package dev.eastar.studylog.item
 
-import dev.eastar.studylog.StudyItemRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.http.MediaType
@@ -32,16 +30,8 @@ class ContentController {
     @PostMapping
     fun last(@RequestParam(value = "millisecond", defaultValue = "${Long.MAX_VALUE}", required = false) id: Long,
              @RequestParam("size", defaultValue = "30", required = false) size: Int): MutableList<StudyItem> {
-        println("2===================================test===================================")
         return repository.findByMillisecondLessThan(id, PageRequest.of(0, size, SORT)).content
     }
-
-    //page 기반 호출
-    //@PostMapping
-    //fun page(@RequestParam("page", defaultValue = "0", required = false) page: Int,
-    //         @RequestParam("size", defaultValue = "30", required = false) size: Int): MutableList<StudyItem> {
-    //    return repository.findAll(PageRequest.of(page, size, SORT)).content
-    //}
 
     @PutMapping(consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
     fun updateOrInsert(studyItem: StudyItem) = repository.save(studyItem)
@@ -57,4 +47,13 @@ class ContentController {
 
     @DeleteMapping(path = ["/all"])
     fun delete() = repository.deleteAll()
+
+
+    ////page 기반 호출
+    //@PostMapping
+    //fun page(@RequestParam("page", defaultValue = "0", required = false) page: Int,
+    //         @RequestParam("size", defaultValue = "30", required = false) size: Int): MutableList<StudyItem> {
+    //    return repository.findAll(PageRequest.of(page, size, SORT)).content
+    //}
+
 }
