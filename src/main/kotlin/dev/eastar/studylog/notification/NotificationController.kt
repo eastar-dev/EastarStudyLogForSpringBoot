@@ -21,7 +21,7 @@ class NotificationController {
 
     @Scheduled(fixedDelay = 10000)
     fun scheduled() {
-        println(SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date()) + "==push start====================================================================")
+        //println(SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date()) + "==push start====================================================================")
         repository.findByPushIs(0L).map {
             it.apply { push = System.currentTimeMillis() }
         }.forEach {
@@ -29,6 +29,6 @@ class NotificationController {
             println("[send] $it")
             push.send("[send] $it")
         }
-        println(SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date()) + "==push end  ====================================================================")
+        //println(SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date()) + "==push end  ====================================================================")
     }
 }
