@@ -1,6 +1,5 @@
 package dev.eastar.studylog.item
 
-import dev.eastar.studylog.item.StudyItem
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.mongodb.repository.MongoRepository

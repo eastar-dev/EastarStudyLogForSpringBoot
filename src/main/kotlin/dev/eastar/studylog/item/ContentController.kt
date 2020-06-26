@@ -28,9 +28,9 @@ class ContentController {
 
     //id 기반 호출
     @PostMapping
-    fun last(@RequestParam(value = "millisecond", defaultValue = "${Long.MAX_VALUE}", required = false) id: Long,
+    fun last(@RequestParam(value = "millisecond", defaultValue = "${Long.MAX_VALUE}", required = false) millisecond: Long,
              @RequestParam("size", defaultValue = "30", required = false) size: Int): MutableList<StudyItem> {
-        return repository.findByMillisecondLessThan(id, PageRequest.of(0, size, SORT)).content
+        return repository.findByMillisecondLessThan(millisecond, PageRequest.of(0, size, SORT)).content
     }
 
     @PutMapping(consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
