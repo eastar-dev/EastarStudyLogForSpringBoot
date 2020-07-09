@@ -3,21 +3,10 @@ docker run -p 27017:27017  -d mongo --name mongo_db
 
 docker exec -i -t mongo_boot bash
 
-
 메인 을 찾을수 없다고 나오는 경우 메인 edit config에서 실행클레스 지우고 다시 등록
 
+릴리즈용 파일(jar)을 만들고 싶으면 어떻게 할까?
+gradle 에서 bootJar부분을 실행 하면 된다.
+결과물은? build/libs/studylog-0.0.1-SNAPSHOT.jar
 
-docker rm 16d82dd82d3b
-docker rm 765475e7a4ed
-docker rm 713b56d8aee6
-docker rm c14c56411394
-docker rm 8577947a7e89
-docker rm 1ebd82b715a9
-docker rm e551ea13729a
-docker rm 2fac88967c14
-docker rm 91909484e7c8
-docker rm 64577dfb56cf
-docker rm a9a4d7b73cc6
-docker rm bddc3399d817
-docker rm 3f428ddf78db
-docker rm 84e3155e8b50
+
