@@ -1,10 +1,6 @@
 package dev.eastar.studylog.notification
 
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
+import okhttp3.*
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 
@@ -15,7 +11,7 @@ class AndroidPushNotificationsService {
         val client = OkHttpClient().newBuilder()
             .build()
 
-        val body = content.toRequestBody("application/json".toMediaType())
+        val body = RequestBody.create(MediaType.parse("application/json"), content)
         val request = Request.Builder()
             .url(firebase_api_url)
             .method("POST", body)
